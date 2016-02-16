@@ -9,9 +9,13 @@
     $about.show().siblings().hide();
   };
 
-  // TODO: How do you want to render a single repo as html? Return your filled in HTML template.
   var render = function(repo) {
     var template = Handlebars.compile($('#github-template').text());
+
+    Handlebars.registerHelper("prettifyDate", function(timestamp) {
+      return new Date(timestamp).toString('yyyy-MM-dd')
+    });
+
     return template(repo);
   };
 
