@@ -4,16 +4,17 @@
   repos.all = [];
 
   repos.requestRepos = function(callback) {
-    // TODO: How would you like to fetch your repos? Don't forget to call the callback.
-    .ajax({
-      url:
-      type: 'GET',
-      headers: {'Authorization': 'token ' + githubToken},
-      success: function(data, message, xhr) {
-        var title = data
-        use .done at in some place to call the callback
-      }).done()
-    })
+    // Done: How would you like to fetch your repos? Don't forget to call the callback.
+    $.ajax({
+       url: 'https://api.github.com/users/chadob/repos',
+             //'?per_page=5&sort=updated',
+       type: 'GET',
+       headers: { 'Authorization': 'token ' + githubToken },
+       success: function(data, message, xhr) {
+          console.log(data);
+          repos.all = data;
+       }
+     }).done(callback);
   };
 
   // DONE: Model method that filters the full collection for repos with a particular attribute.
